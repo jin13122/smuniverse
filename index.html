@@ -1,20 +1,55 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SM유니버스 생성형 AI 엔지니어 양성과정</title>
+    <title>SM유니버스 AI 엔지니어 양성과정</title>
+    <meta name="description" content="SM유니버스 생성형 AI코딩 기반 엔터테인먼트 플랫폼 엔지니어 양성과정">
+    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Pretendard Font -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
-            background-color: #fdfbfb;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            background-color: #080b14;
+            color: #e2e8f0;
+            overflow-x: hidden;
         }
-        .bg-primary-light {
-            background-color: #fff0f5;
+
+        /* 1. 스크롤 올리고 내릴 때마다 부드럽게 작동하는 리빌 애니메이션 */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px) scale(0.985);
+            transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
         }
+        .scroll-reveal.in-view {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* 2. 모든 네모 칸 마우스 인터랙션: 살짝 커지고 부드러운 섀도우 효과 */
+        .card-interactive {
+            transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+            will-change: transform, box-shadow;
+        }
+        .card-interactive:hover {
+            transform: scale(1.025) translateY(-3px);
+            box-shadow: 0 16px 35px -8px rgba(225, 29, 72, 0.22), 0 4px 12px rgba(0, 0, 0, 0.5);
+            border-color: rgba(244, 63, 94, 0.55) !important;
+        }
+        .card-interactive:active {
+            transform: scale(0.995);
+        }
+
+        /* 무한 롤링 기업 배너 */
         @keyframes marquee {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -27,771 +62,618 @@
         .animate-marquee:hover {
             animation-play-state: paused;
         }
+
+        /* 아코디언 */
+        .accordion-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-out;
+        }
+        .accordion-content.open {
+            max-height: 1400px;
+            opacity: 1;
+        }
+        .rotate-icon {
+            transition: transform 0.3s ease;
+        }
+        .rotate-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        /* 스크롤바 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080b14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e11d48;
+        }
     </style>
 </head>
-<body class="text-gray-800 antialiased selection:bg-pink-200 selection:text-pink-900" style="background: linear-gradient(135deg, #fff0f5 0%, #f3e8ff 100%); background-attachment: fixed; min-height: 100vh;">
-    <!-- Fixed Contact Button -->
-    <a href="tel:010-4631-2547" class="fixed top-4 right-4 sm:top-6 sm:right-8 z-50 bg-white/90 backdrop-blur-sm border border-pink-200 text-pink-600 font-extrabold py-2.5 px-5 rounded-full shadow-lg hover:bg-pink-50 hover:scale-105 transition-all flex items-center shadow-pink-200/50">
-        <span class="mr-2 text-xl">☎️</span>상담문의 : 010-4631-2547
-    </a>
+<body class="selection:bg-rose-500/30 selection:text-rose-200 relative min-h-screen">
 
-    <div class="py-16 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-        <div class="max-w-5xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-white/50">
-            <!-- Header -->
-            <div class="bg-gradient-to-r from-pink-100 via-white to-pink-50 p-10 md:p-16 text-center border-b border-pink-100 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNGRkQwRTUiIGZpbGwtb3BhY2l0eT0iMC40Ii8+PC9zdmc+')] opacity-40"></div>
-                <div class="relative z-10" data-aos="fade-down" data-aos-duration="1000">
-                    <span class="inline-block py-1.5 px-5 rounded-full bg-pink-500 text-white text-sm font-bold tracking-wider mb-6 shadow-md shadow-pink-200">
-                        K-Digital Training
-                    </span>
-                    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6 break-keep tracking-tight">
-                        SM유니버스 생성형 AI코딩 기반<br class="hidden md:block" /> 엔터테인먼트 플랫폼 엔지니어 양성과정
-                    </h1>
-                    <p class="text-2xl text-pink-600 font-bold tracking-wide mt-2 drop-shadow-sm">
-                        ( With ChatGPT & Copilot )
-                    </p>
-                </div>
-            </div>
+    <!-- 세련된 다크 앰비언트 글로우 -->
+    <div class="fixed top-0 left-1/3 w-[600px] h-[600px] bg-rose-600/10 rounded-full blur-[160px] pointer-events-none -z-10"></div>
+    <div class="fixed bottom-1/3 right-1/4 w-[700px] h-[700px] bg-indigo-600/10 rounded-full blur-[180px] pointer-events-none -z-10"></div>
 
-            <!-- Content -->
-            <div class="p-8 md:p-12 space-y-12">
-                
-                <!-- Info Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8" data-aos="fade-up" data-aos-delay="100">
-                    <!-- 기간 & 시간 -->
-                    <div class="space-y-6">
-                        <div class="bg-pink-50/50 rounded-xl p-6 border border-pink-100">
-                            <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
-                                <svg class="w-5 h-5 mr-2 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                교육기간
-                            </h3>
-                            <ul class="space-y-3 text-gray-700 font-medium">
-                                <li class="flex items-center"><span class="w-2 h-2 bg-pink-400 rounded-full mr-3"></span>2026-09-29 ~ 2027-04-07 (14회차)</li>
-                            </ul>
-                        </div>
-                        <div class="bg-pink-50/50 rounded-xl p-6 border border-pink-100">
-                            <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
-                                <svg class="w-5 h-5 mr-2 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                교육시간
-                            </h3>
-                            <p class="text-gray-700 font-medium">오전 9:30 ~ 오후 6:30<br/><span class="text-sm text-gray-500 mt-1 inline-block">(130일 / 총 1040시간)</span></p>
-                        </div>
-                    </div>
+    <!-- 상단 고정 헤더 -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#080b14]/85 backdrop-blur-md border-b border-slate-800/80 transition-all">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+            <a href="#" class="flex items-center gap-2 group flex-shrink-0">
+                <span class="text-white font-black text-lg sm:text-xl tracking-wider group-hover:text-rose-400 transition-colors">
+                    SM UNIVERSE
+                </span>
+                <span class="hidden sm:inline-block text-xs font-semibold text-slate-400 border-l border-slate-700 pl-2">
+                    KOSMO
+                </span>
+            </a>
 
-                    <!-- 비용 -->
-                    <div class="space-y-6">
-                        <div class="bg-pink-50/50 rounded-xl p-6 border border-pink-100 h-full flex flex-col justify-center">
-                            <h3 class="text-lg font-bold text-gray-900 mb-6 flex items-center">
-                                <svg class="w-5 h-5 mr-2 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                                교육비용 안내
-                            </h3>
-                            <div class="space-y-5">
-                                <div>
-                                    <p class="text-sm text-gray-500 mb-1 font-medium">총 교육비용</p>
-                                    <p class="text-xl font-bold text-gray-400 line-through decoration-pink-300">18,876,000원</p>
-                                </div>
-                                <div class="pt-5 border-t border-pink-200">
-                                    <p class="text-sm text-gray-500 mb-1 font-medium">자비부담금</p>
-                                    <p class="text-3xl font-extrabold text-pink-600 mb-3">0 ~ 600,000원</p>
-                                    <div class="bg-white px-4 py-3 rounded-lg border border-pink-200 shadow-sm">
-                                        <p class="text-sm text-gray-700 font-medium flex items-center">
-                                            <span class="mr-2">💡</span> 국민취업지원 1유형자 <strong class="text-pink-600 ml-1">전액무료</strong>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <nav class="hidden md:flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-semibold text-slate-300">
+                <a href="#overview" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-slate-800/60 transition-colors">교육개요</a>
+                <a href="#features" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-slate-800/60 transition-colors">주요특징</a>
+                <a href="#curriculum" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-slate-800/60 transition-colors">커리큘럼</a>
+                <a href="#eligibility" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-slate-800/60 transition-colors">지원자격</a>
+                <a href="#employment" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-slate-800/60 transition-colors">취업지원</a>
+            </nav>
 
-                <!-- 개요 -->
-                <div class="pt-4" data-aos="fade-up">
-                    <h2 class="text-2xl font-extrabold text-gray-900 mb-6 flex items-center"><span class="text-3xl mr-2">✨</span> <span class="border-b-2 border-pink-300 pb-1">교육과정 개요</span></h2>
-                    <div class="bg-gray-50 p-6 md:p-8 rounded-2xl border border-gray-100 flex flex-col items-center text-center space-y-4">
-                        <div class="w-full bg-white py-4 px-6 rounded-xl shadow-sm border border-pink-100 hover:shadow-md transition-shadow">
-                            <span class="text-pink-600 font-bold text-sm block mb-1">SM엔터테인먼트그룹 자회사</span>
-                            <span class="text-gray-900 font-extrabold text-lg">'SM UNIVERSE'</span>
-                        </div>
-                        <div class="text-pink-300 font-bold text-2xl">+</div>
-                        <div class="w-full bg-white py-4 px-6 rounded-xl shadow-sm border border-pink-100 hover:shadow-md transition-shadow">
-                            <span class="text-pink-600 font-bold text-sm block mb-1">IT전문인력양성 교육기관</span>
-                            <span class="text-gray-900 font-extrabold text-lg">'한국소프트웨어인재개발원'</span>
-                        </div>
-                        <div class="text-pink-300 font-bold text-2xl">+</div>
-                        <div class="w-full bg-white py-4 px-6 rounded-xl shadow-sm border border-pink-100 hover:shadow-md transition-shadow">
-                            <span class="text-pink-600 font-bold text-sm block mb-1">메타버스 콘텐츠 제작 전문 기업</span>
-                            <span class="text-gray-900 font-extrabold text-lg">'STUDIO REALIVE'</span>
-                        </div>
-                        <div class="text-pink-300 font-bold text-2xl">+</div>
-                        <div class="w-full bg-pink-50 py-5 px-6 rounded-xl border border-pink-200">
-                            <p class="text-gray-900 font-bold text-lg mb-2 break-keep">버추얼/메타버스 등 엔터적 주제로 제작하는 차별화된 프로젝트</p>
-                            <p class="text-gray-600 font-medium text-sm break-keep">IT개발직무 뿐만 아니라 콘텐츠/미디어 기술 분야까지 넓어지는 취업 스펙트럼</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 특징 -->
-                <div class="pt-4" data-aos="fade-up">
-                    <h2 class="text-2xl font-extrabold text-gray-900 mb-6 flex items-center"><span class="text-3xl mr-2">🎯</span> <span class="border-b-2 border-pink-300 pb-1">주요 특징</span></h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="flex items-center p-5 bg-white border border-pink-100 rounded-xl shadow-sm hover:shadow-md transition-shadow hover:border-pink-300">
-                            <div class="flex-shrink-0 w-12 h-12 bg-pink-50 rounded-full flex items-center justify-center text-pink-500 font-bold text-xl mr-4">1</div>
-                            <p class="text-gray-800 font-medium break-keep">SM엔터테인먼트 계열사(SM Universe) 연계 실무 프로젝트</p>
-                        </div>
-                        <div class="flex items-center p-5 bg-white border border-pink-100 rounded-xl shadow-sm hover:shadow-md transition-shadow hover:border-pink-300">
-                            <div class="flex-shrink-0 w-12 h-12 bg-pink-50 rounded-full flex items-center justify-center text-pink-500 font-bold text-xl mr-4">2</div>
-                            <p class="text-gray-800 font-medium break-keep">ChatGPT, Copilot 활용 페어 프로그래밍 및 생산성 극대화</p>
-                        </div>
-                        <div class="flex items-center p-5 bg-white border border-pink-100 rounded-xl shadow-sm hover:shadow-md transition-shadow hover:border-pink-300">
-                            <div class="flex-shrink-0 w-12 h-12 bg-pink-50 rounded-full flex items-center justify-center text-pink-500 font-bold text-xl mr-4">3</div>
-                            <p class="text-gray-800 font-medium break-keep">비전공자 맞춤형 기초부터 심화까지 올인원 커리큘럼</p>
-                        </div>
-                        <div class="flex items-center p-5 bg-white border border-pink-100 rounded-xl shadow-sm hover:shadow-md transition-shadow hover:border-pink-300">
-                            <div class="flex-shrink-0 w-12 h-12 bg-pink-50 rounded-full flex items-center justify-center text-pink-500 font-bold text-xl mr-4">4</div>
-                            <p class="text-gray-800 font-medium break-keep">현업 최고 수준의 개발자 및 AI 전문가 밀착 멘토링</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 커리큘럼 -->
-                <div class="pt-10 border-t border-pink-100" data-aos="fade-up">
-                    <h2 class="text-2xl font-extrabold text-gray-900 mb-8 flex items-center"><span class="text-3xl mr-2">📚</span> <span class="border-b-2 border-pink-300 pb-1">교육과정 커리큘럼</span></h2>
-                    
-                    <div class="space-y-8">
-                        <!-- 1. 정규 교과 -->
-                        <div>
-                            <h3 class="text-xl font-bold text-pink-600 mb-4 flex items-center"><span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm mr-2 font-bold">PART 1</span>정규 교과</h3>
-                            <div class="bg-white border border-pink-200 rounded-xl overflow-hidden shadow-sm">
-                                
-                                <!-- 카테고리 1 -->
-                                <div class="border-b border-pink-100 last:border-0 flex flex-col md:flex-row">
-                                    <div class="bg-[#fdf3da] md:w-1/4 p-5 md:border-r border-pink-100 flex items-center justify-center text-center">
-                                        <span class="font-bold text-gray-800">LLM을 활용한<br class="hidden md:block"/> AI 어시스턴트<br class="hidden md:block"/> 프로그래밍 기초</span>
-                                    </div>
-                                    <div class="md:w-3/4 p-5 bg-[#fdfaf2]">
-                                        <h4 class="font-bold text-[#1f4e99] mb-3 text-lg">프롬프트 엔지니어링 및 LLM 프로그래밍</h4>
-                                        <ul class="list-none text-gray-700 space-y-1.5 text-sm font-medium">
-                                            <li>- 프롬프트 엔지니어링 기법</li>
-                                            <li>- 프롬프트 최적화</li>
-                                            <li>- 프롬프트 설계 및 테스트</li>
-                                            <li>- 바이브코딩 (자연어 처리 및 생성 모델 소개)</li>
-                                            <li>- LLM 프로그래밍 기초</li>
-                                            <li>- OPEN AI API 사용하기</li>
-                                            <li>- LLM 프로그램 작성하기</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <!-- 카테고리 2 -->
-                                <div class="border-b border-pink-100 last:border-0 flex flex-col md:flex-row">
-                                    <div class="bg-[#fdf3da] md:w-1/4 p-5 md:border-r border-pink-100 flex items-center justify-center text-center">
-                                        <span class="font-bold text-gray-800">버츄얼<br class="hidden md:block"/> 엔터테인먼트<br class="hidden md:block"/> 웹 시각화<br class="hidden md:block"/> 개발자<br/><span class="text-sm font-normal text-gray-600 mt-1 inline-block">( 기초 )</span></span>
-                                    </div>
-                                    <div class="md:w-3/4 p-0">
-                                        <div class="p-5 border-b border-[#f3e6c5] last:border-0 bg-[#fdfaf2]">
-                                            <h4 class="font-bold text-[#1f4e99] mb-3 text-lg">SW기초기술이해 (JAVA)</h4>
-                                            <ul class="list-none text-gray-700 space-y-1.5 text-sm font-medium">
-                                                <li>- Java 프로그램에 대한 기본 구조 및 문법<br/>&nbsp;&nbsp;<span class="text-gray-500">(Java 개발환경 구축, Java에서 지원하는 데이터타입, 연산자 Java의 제어문)</span></li>
-                                                <li>- Java 프로그램 구현을 위한 OOP<br/>&nbsp;&nbsp;<span class="text-gray-500">(클래스 정의와 객체 생성, 상속 다형성, 상클래스, 인터페이스)</span></li>
-                                                <li>- GitHub Copilot 연동 환경 설정</li>
-                                                <li>- Library 기능 이해 및 활용</li>
-                                                <li>- 응용 SW 개발을 위한 프로그램 설계 및 개발</li>
-                                                <li>- 응용 SW 개발을 위한 통합 기술</li>
-                                                <li>- Github Copilot을 활용한 Java 소스 코드 생성</li>
-                                            </ul>
-                                        </div>
-                                        <div class="p-5 border-b border-[#f3e6c5] last:border-0 bg-[#fdfaf2]">
-                                            <h4 class="font-bold text-[#1f4e99] mb-3 text-lg">SW기초기술이해 (Python)</h4>
-                                            <ul class="list-none text-gray-700 space-y-1.5 text-sm font-medium">
-                                                <li>- Python언어 기반의 객체지향의 도입 (클래스, 생성자 등)</li>
-                                                <li>- 객체지향의 전개 (상속, 다형성, 다중상속 등)</li>
-                                                <li>- 객체지향의 완성 (연산자 오버로딩, 템플릿, 예외처리 등)</li>
-                                                <li>- Github Copilot을 활용한 Python 소스 코드 생성</li>
-                                            </ul>
-                                        </div>
-                                        <div class="p-5 border-b border-[#f3e6c5] last:border-0 bg-[#fdfaf2]">
-                                            <h4 class="font-bold text-[#1f4e99] mb-3 text-lg">Network Programming</h4>
-                                            <ul class="list-none text-gray-700 space-y-1.5 text-sm font-medium">
-                                                <li>- 소켓 프로그래밍</li>
-                                                <li>- TCP/IP 프로그래밍</li>
-                                                <li>- 센서 활용 및 제어 프로그래밍</li>
-                                                <li>- 인터넷 및 통신 제어</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 카테고리 3 -->
-                                <div class="border-b border-pink-100 last:border-0 flex flex-col md:flex-row">
-                                    <div class="bg-[#d2ede7] md:w-1/4 p-5 md:border-r border-pink-100 flex items-center justify-center text-center">
-                                        <span class="font-bold text-gray-800">버츄얼<br class="hidden md:block"/> 엔터테인먼트<br class="hidden md:block"/> 웹 시각화<br class="hidden md:block"/> 개발자<br/><span class="text-sm font-normal text-gray-600 mt-1 inline-block">( 심화 )</span></span>
-                                    </div>
-                                    <div class="md:w-3/4 p-0">
-                                        <div class="p-5 border-b border-[#b7dcd5] last:border-0 bg-[#ebf7f5]">
-                                            <h4 class="font-bold text-[#1f4e99] mb-3 text-lg">Web 시각화 (JSP/ Spring)</h4>
-                                            <ul class="list-none text-gray-700 space-y-1.5 text-sm font-medium">
-                                                <li>- JSP 개요 소개</li>
-                                                <li>- DBMS 제어 (오라클 설치 및 구문학습)</li>
-                                                <li>- JDBC 주요기능 학습</li>
-                                                <li>- HTML 태그 및 데이터전송, 서버연계 학습</li>
-                                                <li>- 서블릿 및 필터 학습</li>
-                                                <li>- 홈페이지 제작 실습</li>
-                                                <li>- MVC 소개 및 환경구축</li>
-                                                <li>- 스프링 DI</li>
-                                                <li>- 스프링 AOP</li>
-                                                <li>- 스프링 DBMS 연동</li>
-                                                <li>- 트랜잭션 관리와 ORM 연동</li>
-                                                <li>- 스프링 MVC</li>
-                                                <li>- 스프링에서 View 영역구현</li>
-                                                <li>- 스프링 이용한 게시판 구현</li>
-                                                <li>- Github Copilot을 연동한 개발 환경 구성 및 코드 자동화</li>
-                                            </ul>
-                                        </div>
-                                        <div class="p-5 border-b border-[#b7dcd5] last:border-0 bg-[#ebf7f5]">
-                                            <h4 class="font-bold text-[#1f4e99] mb-3 text-lg">HTML5/JavaScript/React</h4>
-                                            <ul class="list-none text-gray-700 space-y-1.5 text-sm font-medium">
-                                                <li>- HTML5/CSS3</li>
-                                                <li>- JavaScript (ECMA 5+)/React</li>
-                                                <li>- Github Copilot을 연동한 개발 환경 구성 및 코드 자동화</li>
-                                            </ul>
-                                        </div>
-                                        <div class="p-5 border-b border-[#b7dcd5] last:border-0 bg-[#ebf7f5]">
-                                            <h4 class="font-bold text-[#1f4e99] mb-3 text-lg">데이터베이스 & SQL</h4>
-                                            <ul class="list-none text-gray-700 space-y-1.5 text-sm font-medium">
-                                                <li>- DBMS를 설치하고 데이터베이스 생성, 오브젝트를 계획, 설계 및 구현하기</li>
-                                                <li>- 데이터베이스에서 SQL을 사용하여 응용시스템 데이터 조작 및 제어하기</li>
-                                            </ul>
-                                        </div>
-                                        <div class="p-5 border-b border-[#b7dcd5] last:border-0 bg-[#ebf7f5]">
-                                            <h4 class="font-bold text-[#1f4e99] mb-3 text-lg">[콘텐츠 특화]</h4>
-                                            <ul class="list-none text-gray-700 space-y-1.5 text-sm font-medium">
-                                                <li class="font-bold text-gray-800">버츄얼 엔터테인먼트의 이해</li>
-                                                <li class="pl-2">- AI 시대의 미디어 콘텐츠 리터러시</li>
-                                                <li class="pl-2">- AI와 미디어 콘텐츠 활용 전략</li>
-                                                <li class="font-bold text-gray-800 mt-4">미디어 콘텐츠 데이터 학습</li>
-                                                <li class="pl-2">- 생성형 미디어 제작 기술 (Text -> Video, Voice)</li>
-                                                <li class="pl-2">- AI Oriented IDE : Cursor, Gemini Code Assist 등 활용 환경 구축</li>
-                                                <li class="pl-2">- Virtual Production & AI Workflow : 영상·무대·실시간 콘텐츠와 개발 연계</li>
-                                                <li class="font-bold text-gray-800 mt-4">AI와 미디어 콘텐츠 활용 전략</li>
-                                                <li class="pl-2">- AIGC Web Deployment: 생성형 콘텐츠의 웹 실시간 배포</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- 2. 프로젝트 -->
-                        <div>
-                            <h3 class="text-xl font-bold text-[#e6735e] mb-4 flex items-center"><span class="bg-[#fde5e1] text-[#d65741] px-3 py-1 rounded-full text-sm mr-2 font-bold">PART 2</span>프로젝트</h3>
-                            <div class="bg-white border border-[#fbd4cd] rounded-xl overflow-hidden shadow-sm">
-                                
-                                <div class="border-b border-[#fbd4cd] last:border-0 flex flex-col md:flex-row">
-                                    <div class="bg-[#fad3cd] md:w-1/4 p-5 md:border-r border-[#fbd4cd] flex items-center justify-center text-center">
-                                        <span class="font-bold text-gray-800">버츄얼<br class="hidden md:block"/> 엔터테인먼트<br class="hidden md:block"/> 웹 시각화<br class="hidden md:block"/> 개발자<br/><span class="text-sm font-normal text-gray-700 mt-1 inline-block">기초 프로젝트</span></span>
-                                    </div>
-                                    <div class="md:w-3/4 p-5 flex flex-col justify-center bg-[#fdf0ed]">
-                                        <ul class="list-none text-gray-800 space-y-2 font-bold text-[15px]">
-                                            <li>주제1 : 공공데이터 진학 추천 서비스 프로젝트</li>
-                                            <li>주제2 : 하우스 서치 프로젝트</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="border-b border-[#fbd4cd] last:border-0 flex flex-col md:flex-row">
-                                    <div class="bg-[#fad3cd] md:w-1/4 p-5 md:border-r border-[#fbd4cd] flex items-center justify-center text-center">
-                                        <span class="font-bold text-gray-800">버츄얼<br class="hidden md:block"/> 엔터테인먼트<br class="hidden md:block"/> 웹 시각화<br class="hidden md:block"/> 개발자<br/><span class="text-sm font-normal text-gray-700 mt-1 inline-block">심화 프로젝트</span></span>
-                                    </div>
-                                    <div class="md:w-3/4 p-5 flex flex-col justify-center bg-[#fdf0ed]">
-                                        <ul class="list-none text-gray-800 space-y-2 font-bold text-[15px]">
-                                            <li>주제1 : 가상 엔터테인먼트 콘서트 프로젝트</li>
-                                            <li>주제2 : 인터렉티브 시네마틱 필름 프로젝트</li>
-                                            <li>주제3 : 상호 인터렉션 퍼포먼스 챌린지 프로젝트</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- 3. 기타 -->
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-600 mb-4 flex items-center"><span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm mr-2 font-bold">PART 3</span>기타</h3>
-                            <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-                                
-                                <div class="border-b border-gray-200 last:border-0 flex flex-col md:flex-row">
-                                    <div class="bg-gray-100 md:w-1/4 p-5 md:border-r border-gray-200 flex items-center justify-center text-center">
-                                        <span class="font-bold text-gray-800">오리엔테이션</span>
-                                    </div>
-                                    <div class="md:w-3/4 p-5 flex flex-col justify-center bg-gray-50">
-                                        <ul class="list-none text-gray-700 space-y-1.5 text-sm font-medium">
-                                            <li>- 훈련 내용 및 운영 안내</li>
-                                            <li>- 강사 및 담당자 소개</li>
-                                            <li>- 기타 안내</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="border-b border-gray-200 last:border-0 flex flex-col md:flex-row">
-                                    <div class="bg-gray-100 md:w-1/4 p-5 md:border-r border-gray-200 flex items-center justify-center text-center">
-                                        <span class="font-bold text-gray-800">특강</span>
-                                    </div>
-                                    <div class="md:w-3/4 p-0">
-                                        <div class="p-5 border-b border-gray-200 last:border-0 bg-gray-50">
-                                            <h4 class="font-bold text-gray-900 mb-2">산업체 특강</h4>
-                                            <ul class="list-none text-gray-700 space-y-1 text-sm font-medium">
-                                                <li>- 엔터산업에서의 IT 기술 활용 동향</li>
-                                            </ul>
-                                        </div>
-                                        <div class="p-5 border-b border-gray-200 last:border-0 bg-gray-50">
-                                            <h4 class="font-bold text-gray-900 mb-2">취업 특강</h4>
-                                            <ul class="list-none text-gray-700 space-y-1 text-sm font-medium">
-                                                <li>- 엔터산업 기업 채용 동향</li>
-                                                <li>- 이력서 포트폴리오 작성법</li>
-                                                <li>- 취업상담</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="border-b border-gray-200 last:border-0 flex flex-col md:flex-row">
-                                    <div class="bg-gray-100 md:w-1/4 p-5 md:border-r border-gray-200 flex items-center justify-center text-center">
-                                        <span class="font-bold text-[#1f4e99]">프로젝트<br/>경진대회</span>
-                                    </div>
-                                    <div class="md:w-3/4 p-5 flex flex-col justify-center bg-gray-50">
-                                        <ul class="list-none text-gray-700 space-y-1.5 text-sm font-medium">
-                                            <li>- 프로젝트 최종 발표</li>
-                                            <li>- 수료식</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 지원자격 -->
-                <div class="pt-10 border-t border-pink-100" data-aos="fade-up">
-                    <h2 class="text-2xl font-extrabold text-gray-900 mb-8 flex items-center"><span class="text-3xl mr-2">✅</span> <span class="border-b-2 border-pink-300 pb-1">지원자격</span></h2>
-                    <div class="bg-gray-50 rounded-xl p-6 md:p-8">
-                        <ul class="space-y-4">
-                            <li class="flex items-start">
-                                <svg class="w-6 h-6 text-pink-500 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span class="text-gray-700 text-lg">내일배움카드 발급 가능자 및 기발급자</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="w-6 h-6 text-pink-500 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span class="text-gray-700 text-lg">전공 무관, K-Digital Training 수강 이력이 없는 자</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="w-6 h-6 text-pink-500 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span class="text-gray-700 text-lg">교육 과정에 풀타임(09:30~18:30) 참여 가능한 자</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="w-6 h-6 text-pink-500 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span class="text-gray-700 text-lg">AI 및 엔터테인먼트 산업에 관심이 많은 자</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- 선발 및 수당 -->
-                <div class="pt-10 border-t border-pink-100" data-aos="fade-up">
-                    <h2 class="text-2xl font-extrabold text-gray-900 mb-8 flex items-center"><span class="text-3xl mr-2">🏆</span> <span class="border-b-2 border-pink-300 pb-1">선발 및 수당</span></h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        
-                        <!-- 선발 절차 -->
-                        <div class="bg-white border border-pink-200 rounded-xl p-6 shadow-sm">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
-                                <svg class="w-5 h-5 mr-2 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                선발 절차
-                            </h3>
-                            <div class="flex flex-col sm:flex-row items-center sm:space-x-4 space-y-4 sm:space-y-0 text-center font-medium text-gray-700">
-                                <div class="bg-pink-50 px-4 py-2 rounded-lg w-full sm:w-auto">온라인 지원서 접수</div>
-                                <svg class="hidden sm:block w-5 h-5 text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                                <svg class="sm:hidden w-5 h-5 text-pink-300 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                                <div class="bg-pink-50 px-4 py-2 rounded-lg w-full sm:w-auto">면접 전형</div>
-                                <svg class="hidden sm:block w-5 h-5 text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                                <svg class="sm:hidden w-5 h-5 text-pink-300 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                                <div class="bg-pink-100 text-pink-700 font-bold px-4 py-2 rounded-lg w-full sm:w-auto">최종 합격</div>
-                            </div>
-                        </div>
-
-                        <!-- 훈련 장려금 -->
-                        <div class="bg-white border border-pink-200 rounded-xl p-6 shadow-sm">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
-                                <svg class="w-5 h-5 mr-2 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                훈련 장려금
-                            </h3>
-                            <div class="bg-pink-50 rounded-lg p-4">
-                                <p class="text-gray-800 font-medium mb-1">매월 최대 <strong class="text-pink-600 text-lg">30만 ~ 90만원</strong> 차등 지급</p>
-                                <p class="text-sm text-gray-500">(국민취업지원제도 참여 여부에 따라 상이)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 교육생 특전 -->
-                <div class="pt-10 border-t border-pink-100" data-aos="fade-up">
-                    <h2 class="text-2xl font-extrabold text-gray-900 mb-8 flex items-center"><span class="text-3xl mr-2">🎁</span> <span class="border-b-2 border-pink-300 pb-1">교육생 특전</span></h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="flex flex-col items-center text-center p-6 bg-pink-50/50 rounded-xl border border-pink-100">
-                            <div class="w-12 h-12 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            </div>
-                            <h4 class="font-bold text-gray-900 mb-2">교육비 국비지원</h4>
-                            <p class="text-gray-600 text-sm">100% 국비지원<br/>(국민취업지원제도 1유형 참여자)</p>
-                        </div>
-                        <div class="flex flex-col items-center text-center p-6 bg-pink-50/50 rounded-xl border border-pink-100">
-                            <div class="w-12 h-12 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            </div>
-                            <h4 class="font-bold text-gray-900 mb-2">최고급 장비 지원</h4>
-                            <p class="text-gray-600 text-sm">최고급 개발용 PC 및 학습 라운지 제공</p>
-                        </div>
-                        <div class="flex flex-col items-center text-center p-6 bg-pink-50/50 rounded-xl border border-pink-100">
-                            <div class="w-12 h-12 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                            </div>
-                            <h4 class="font-bold text-gray-900 mb-2">채용 연계</h4>
-                            <p class="text-gray-600 text-sm">우수 수료생 관련 기업 채용 추천</p>
-                        </div>
-                        <div class="flex flex-col items-center text-center p-6 bg-pink-50/50 rounded-xl border border-pink-100">
-                            <div class="w-12 h-12 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                            </div>
-                            <h4 class="font-bold text-gray-900 mb-2">취업 컨설팅</h4>
-                            <p class="text-gray-600 text-sm">1:1 맞춤형 취업 컨설팅 및 이력서 첨삭</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 훈련장소 -->
-                <div class="pt-10 border-t border-pink-100" data-aos="fade-up">
-                    <h2 class="text-2xl font-extrabold text-gray-900 mb-8 flex items-center"><span class="text-3xl mr-2">📍</span> <span class="border-b-2 border-pink-300 pb-1">훈련장소</span></h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="flex items-start p-5 bg-white border border-pink-200 rounded-xl shadow-sm">
-                            <svg class="w-6 h-6 text-pink-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            <div>
-                                <h4 class="font-bold text-gray-900 mb-1">SM유니버스 본사</h4>
-                                <p class="text-gray-600 text-sm">서울 강남구 영동대로 217</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start p-5 bg-white border border-pink-200 rounded-xl shadow-sm">
-                            <svg class="w-6 h-6 text-pink-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            <div>
-                                <h4 class="font-bold text-gray-900 mb-1">한국소프트웨어인재개발원 본원</h4>
-                                <p class="text-gray-600 text-sm">서울 금천구 가산동</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 취업지원안내 -->
-                <div class="pt-10 border-t border-pink-100" data-aos="fade-up">
-                    <h2 class="text-2xl font-extrabold text-gray-900 mb-8 flex items-center"><span class="text-3xl mr-2">💼</span> <span class="border-b-2 border-pink-300 pb-1">KOSMO 취업지원 PLAN</span></h2>
-                    
-                    <div class="space-y-6">
-                        <!-- Top Cards -->
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <!-- Card 1 -->
-                            <div class="bg-white rounded-2xl shadow-[0_4px_20px_-4px_rgba(227,0,75,0.15)] border border-pink-50 overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="100">
-                                <div class="bg-[#e3004b] text-white py-4 px-6 text-center h-[88px] flex items-center justify-center">
-                                    <h3 class="font-bold text-lg">1개월~3개월 차</h3>
-                                </div>
-                                <div class="py-8 px-6 text-center bg-white flex flex-col justify-center flex-grow items-center">
-                                    <p class="font-bold text-gray-800 text-lg">1차 상담 시작</p>
-                                    <p class="text-gray-500 mt-1">(진로탐색 및 자기 분석)</p>
-                                </div>
-                            </div>
-                            <!-- Card 2 -->
-                            <div class="bg-white rounded-2xl shadow-[0_4px_20px_-4px_rgba(227,0,75,0.15)] border border-pink-50 overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="200">
-                                <div class="bg-[#e3004b] text-white py-4 px-6 text-center h-[88px] flex items-center justify-center">
-                                    <h3 class="font-bold text-lg">3개월~5개월 차</h3>
-                                </div>
-                                <div class="py-8 px-6 text-center bg-white flex flex-col justify-center flex-grow items-center">
-                                    <p class="font-bold text-gray-800 text-lg">진로의 구체화 및<br/>취업 로드맵 수립</p>
-                                </div>
-                            </div>
-                            <!-- Card 3 -->
-                            <div class="bg-white rounded-2xl shadow-[0_4px_20px_-4px_rgba(227,0,75,0.15)] border border-pink-50 overflow-hidden flex flex-col" data-aos="fade-up" data-aos-delay="300">
-                                <div class="bg-[#e3004b] text-white py-4 px-6 text-center h-[88px] flex flex-col items-center justify-center">
-                                    <h3 class="font-bold text-lg">5개월~수료식 이후</h3>
-                                    <p class="text-xs text-pink-100 font-light mt-0.5">(취업지원 : 수료후 6개월간)</p>
-                                </div>
-                                <div class="py-8 px-6 text-center bg-white flex flex-col justify-center flex-grow items-center">
-                                    <p class="font-bold text-gray-800 text-lg">기업 채용 연계</p>
-                                    <p class="text-gray-500 mt-1">(취업지원 집중 기간)</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Table -->
-                        <div class="bg-white rounded-2xl shadow-[0_4px_20px_-4px_rgba(227,0,75,0.1)] border border-pink-50 overflow-hidden mt-8" data-aos="fade-up" data-aos-delay="400">
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-sm text-center min-w-[800px]">
-                                    <thead>
-                                        <tr class="bg-[#e3004b] text-white">
-                                            <th class="py-5 px-4 font-bold border-r border-[#ff3377] w-[35%] align-middle leading-snug">6개월 교육과정 단계별<br/>취업지원 PLAN 안내</th>
-                                            <th class="py-4 px-2 font-bold border-r border-[#ff3377] w-[9%]">1개월</th>
-                                            <th class="py-4 px-2 font-bold border-r border-[#ff3377] w-[9%]">2개월</th>
-                                            <th class="py-4 px-2 font-bold border-r border-[#ff3377] w-[9%]">3개월</th>
-                                            <th class="py-4 px-2 font-bold border-r border-[#ff3377] w-[9%]">4개월</th>
-                                            <th class="py-4 px-2 font-bold border-r border-[#ff3377] w-[9%]">5개월</th>
-                                            <th class="py-4 px-2 font-bold border-r border-[#ff3377] w-[10%] leading-snug">6개월<br/><span class="text-xs font-normal opacity-80">(수료식)</span></th>
-                                            <th class="py-4 px-2 font-bold w-[10%] leading-snug">수료 후<br/><span class="text-xs font-normal opacity-80">(관리)</span></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="text-gray-700">
-                                        <tr class="border-b border-gray-100">
-                                            <td class="py-5 px-6 text-left border-r border-gray-100 bg-gray-50/50">
-                                                <p class="font-bold text-gray-800 text-[15px]">오리엔테이션 : 취업지원서비스 전반적 안내</p>
-                                                <p class="text-[13px] text-gray-500 mt-1">(진로탐색 및 자기분석 중심 관련 특강 진행)</p>
-                                            </td>
-                                            <td colspan="2" class="p-3 border-r border-gray-100 align-middle">
-                                                <div class="h-6 bg-[#fced9f] rounded-full w-full mx-auto shadow-sm"></div>
-                                            </td>
-                                            <td colspan="5" class="p-3 align-middle"></td>
-                                        </tr>
-                                        <tr class="border-b border-gray-100">
-                                            <td class="py-5 px-6 text-left border-r border-gray-100 bg-gray-50/50">
-                                                <p class="font-bold text-gray-800 text-[15px]">개인별 취업 상담 시작 및 온라인 수시 상담</p>
-                                                <p class="text-[13px] text-gray-500 mt-1">(진로탐색 / 직무 분석 / 취업로드맵 수립)</p>
-                                            </td>
-                                            <td colspan="3" class="p-3 border-r border-gray-100 align-middle">
-                                                <div class="h-6 bg-[#87cfc9] rounded-full w-full mx-auto shadow-sm"></div>
-                                            </td>
-                                            <td colspan="4" class="p-3 align-middle"></td>
-                                        </tr>
-                                        <tr class="border-b border-gray-100">
-                                            <td class="py-5 px-6 text-left border-r border-gray-100 bg-gray-50/50">
-                                                <p class="font-bold text-gray-800 text-[15px]">이력서/자소서 클리닉 진행</p>
-                                                <p class="text-[13px] text-gray-500 mt-1">(1:1 맞춤상담 및 자소서 첨삭 및 결과물 작업)</p>
-                                            </td>
-                                            <td colspan="2" class="p-3 border-r border-gray-100 align-middle"></td>
-                                            <td colspan="3" class="p-3 border-r border-gray-100 align-middle">
-                                                <div class="h-6 bg-[#f2a5c3] rounded-full w-full mx-auto shadow-sm"></div>
-                                            </td>
-                                            <td colspan="2" class="p-3 align-middle"></td>
-                                        </tr>
-                                        <tr class="border-b border-gray-100">
-                                            <td class="py-5 px-6 text-left border-r border-gray-100 bg-gray-50/50 align-middle">
-                                                <p class="font-bold text-gray-800 text-[15px]">취업 매칭 기업 채용 연계</p>
-                                                <p class="text-[13px] text-gray-500 mt-1">(입사지원/면접합격)</p>
-                                            </td>
-                                            <td colspan="4" class="p-3 border-r border-gray-100 align-middle"></td>
-                                            <td colspan="3" class="p-3 border-r border-gray-100 align-middle">
-                                                <div class="h-6 bg-[#f4b66b] rounded-full w-[95%] shadow-sm mr-auto"></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-5 px-6 text-left border-r border-gray-100 bg-gray-50/50">
-                                                <p class="font-bold text-gray-800 text-[15px]">수료 : 수료후 사후 관리</p>
-                                                <p class="text-[13px] text-gray-500 mt-1">(채용연계 기업 정보 전달 및 상담)</p>
-                                            </td>
-                                            <td colspan="5" class="p-3 border-r border-gray-100 align-middle"></td>
-                                            <td colspan="2" class="p-3 align-middle">
-                                                <div class="h-6 bg-[#d01c4c] rounded-full w-full mx-auto shadow-sm"></div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 취업성공현황 -->
-                <div class="pt-10 border-t border-pink-100" data-aos="fade-up">
-                    <h2 class="text-2xl font-extrabold text-gray-900 mb-8 flex items-center"><span class="text-3xl mr-2">🏆</span> <span class="border-b-2 border-pink-300 pb-1">취업성공현황</span></h2>
-                    
-                    <div class="bg-gray-900 text-white rounded-2xl p-8 mb-8 shadow-xl relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-64 h-64 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 transform translate-x-1/2 -translate-y-1/2"></div>
-                        
-                        <div class="relative z-10">
-                            <h3 class="text-xl font-bold text-pink-300 mb-6 flex items-center">
-                                KOSMO HRD-Net 취업률 집계
-                            </h3>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center">
-                                    <p class="text-gray-300 text-sm mb-2">누적수강생</p>
-                                    <p class="text-3xl font-extrabold text-white">4,000명 <span class="text-xl text-pink-400">돌파</span></p>
-                                </div>
-                                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center">
-                                    <p class="text-gray-300 text-sm mb-2">2024년 수료율</p>
-                                    <p class="text-3xl font-extrabold text-white">92.4<span class="text-xl text-pink-400">%</span></p>
-                                </div>
-                                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10 text-center">
-                                    <p class="text-gray-300 text-sm mb-2">2024년 취업률</p>
-                                    <p class="text-3xl font-extrabold text-white">90.9<span class="text-xl text-pink-400">%</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white border border-gray-100 rounded-xl py-6 shadow-sm overflow-hidden mb-12">
-                        <div class="animate-marquee items-center gap-12 whitespace-nowrap px-6">
-                            <!-- Duplicate items to create infinite scroll effect -->
-                            <div class="flex items-center gap-12">
-                                <span class="text-lg font-bold text-gray-700">현대제철</span>
-                                <span class="text-lg font-bold text-gray-700">현대자동차</span>
-                                <span class="text-lg font-bold text-gray-700">현대벤디스</span>
-                                <span class="text-lg font-bold text-gray-700">KB국민은행</span>
-                                <span class="text-lg font-bold text-gray-700">NH농협은행</span>
-                                <span class="text-lg font-bold text-gray-700">제일약품</span>
-                                <span class="text-lg font-bold text-gray-700">LS오토모비스</span>
-                                <span class="text-lg font-bold text-gray-700">IBK시스템</span>
-                                <span class="text-lg font-bold text-gray-700">LS네오텍</span>
-                                <span class="text-lg font-bold text-gray-700">KX인텍</span>
-                                <span class="text-lg font-bold text-gray-700">웰컴페이먼츠(주)</span>
-                                <span class="text-lg font-bold text-gray-700">피플라이프</span>
-                                <span class="text-lg font-bold text-gray-700">크리니티(주)</span>
-                                <span class="text-lg font-bold text-gray-700">(주)와이드티엔에스</span>
-                                <span class="text-lg font-bold text-gray-700">(주)아이비리더스</span>
-                                <span class="text-lg font-bold text-gray-700">한국이디에스</span>
-                            </div>
-                            <!-- Second set for seamless looping -->
-                            <div class="flex items-center gap-12">
-                                <span class="text-lg font-bold text-gray-700">현대제철</span>
-                                <span class="text-lg font-bold text-gray-700">현대자동차</span>
-                                <span class="text-lg font-bold text-gray-700">현대벤디스</span>
-                                <span class="text-lg font-bold text-gray-700">KB국민은행</span>
-                                <span class="text-lg font-bold text-gray-700">NH농협은행</span>
-                                <span class="text-lg font-bold text-gray-700">제일약품</span>
-                                <span class="text-lg font-bold text-gray-700">LS오토모비스</span>
-                                <span class="text-lg font-bold text-gray-700">IBK시스템</span>
-                                <span class="text-lg font-bold text-gray-700">LS네오텍</span>
-                                <span class="text-lg font-bold text-gray-700">KX인텍</span>
-                                <span class="text-lg font-bold text-gray-700">웰컴페이먼츠(주)</span>
-                                <span class="text-lg font-bold text-gray-700">피플라이프</span>
-                                <span class="text-lg font-bold text-gray-700">크리니티(주)</span>
-                                <span class="text-lg font-bold text-gray-700">(주)와이드티엔에스</span>
-                                <span class="text-lg font-bold text-gray-700">(주)아이비리더스</span>
-                                <span class="text-lg font-bold text-gray-700">한국이디에스</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 문의 및 지원 폼 -->
-                <div class="pt-10 border-t border-pink-100" data-aos="fade-up">
-                    <h2 class="text-2xl font-extrabold text-gray-900 mb-8 flex items-center"><span class="text-3xl mr-2">📝</span> <span class="border-b-2 border-pink-300 pb-1">과정 지원 및 문의하기</span></h2>
-                    
-                    <div id="form-success-message" class="hidden bg-green-50 border border-green-200 text-green-700 p-8 rounded-2xl text-center mb-6 shadow-sm">
-                        <span class="text-4xl block mb-3">🎉</span>
-                        <h3 class="text-2xl font-bold mb-2">상담 신청이 완료되었습니다!</h3>
-                        <p class="text-green-600">담당자가 확인 후 빠른 시일 내에 연락드리겠습니다.</p>
-                    </div>
-
-                    <form id="inquiry-form" class="bg-gray-50 rounded-2xl p-6 md:p-8 space-y-6 border border-pink-100 shadow-sm">
-                        <!-- InputHaven 연동 Form ID -->
-                        <input type="hidden" name="_form_id" value="c6397110de9deec24d35de40e8d1e38b" />
-                        
-                        <!-- 과정명 (기본값) -->
-                        <div class="flex flex-col">
-                            <label class="text-sm font-bold text-gray-700 mb-1.5">과정명</label>
-                            <input type="text" name="course" value="SM유니버스 생성형 AI코딩 기반 엔터테인먼트 플랫폼 엔지니어 양성과정" readonly class="bg-gray-200 border-none rounded-xl p-3.5 text-gray-600 font-medium cursor-not-allowed outline-none w-full" />
-                        </div>
-
-                        <!-- 개인정보 입력 -->
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                            <div class="flex flex-col">
-                                <label class="text-sm font-bold text-gray-700 mb-1.5">이름 <span class="text-pink-500">*</span></label>
-                                <input type="text" name="name" placeholder="홍길동" required class="bg-white border border-gray-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-transparent transition-shadow w-full" />
-                            </div>
-                            <div class="flex flex-col">
-                                <label class="text-sm font-bold text-gray-700 mb-1.5">나이 <span class="text-pink-500">*</span></label>
-                                <input type="text" name="age" placeholder="예:30" required class="bg-white border border-gray-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-transparent transition-shadow w-full" />
-                            </div>
-                            <div class="flex flex-col">
-                                <label class="text-sm font-bold text-gray-700 mb-1.5">연락처 <span class="text-pink-500">*</span></label>
-                                <input type="tel" name="phone" placeholder="010-0000-0000" required class="bg-white border border-gray-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-transparent transition-shadow w-full" />
-                            </div>
-                        </div>
-
-                        <!-- 문의내용 -->
-                        <div class="flex flex-col">
-                            <label class="text-sm font-bold text-gray-700 mb-1.5">문의내용 <span class="text-pink-500">*</span></label>
-                            <textarea name="message" placeholder="궁금하신 점을 자유롭게 적어주세요." rows="4" required class="bg-white border border-gray-200 rounded-xl p-3.5 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-transparent transition-shadow resize-none w-full"></textarea>
-                        </div>
-
-                        <!-- 개인정보 수집 동의 -->
-                        <div class="bg-white border border-gray-200 rounded-xl p-5">
-                            <div class="flex items-center justify-between">
-                                <label class="flex items-center cursor-pointer group">
-                                    <input type="checkbox" required class="w-5 h-5 text-pink-500 border-gray-300 rounded focus:ring-pink-400 cursor-pointer" />
-                                    <span class="ml-3 text-sm font-bold text-gray-700 group-hover:text-gray-900">개인정보 수집 및 이용에 동의합니다. (필수)</span>
-                                </label>
-                                <button type="button" onclick="document.getElementById('privacy-details').classList.toggle('hidden')" class="text-xs text-gray-500 underline hover:text-gray-800 font-medium whitespace-nowrap ml-4">자세히 보기</button>
-                            </div>
-                            <div id="privacy-details" class="hidden mt-4 p-4 bg-gray-50 rounded-lg text-xs text-gray-600 space-y-2 border border-gray-100">
-                                <p class="font-bold text-gray-800">개인정보 수집 및 이용 동의 (필수)</p>
-                                <p>한국소프트웨어인재개발원 실시간온라인문의 신청을 위해 다음과 같이 개인정보를 수집 및 이용합니다.</p>
-                                <ul class="list-disc pl-5 space-y-1 mt-2">
-                                    <li><strong class="text-gray-700">수집목적:</strong> 온라인문의</li>
-                                    <li><strong class="text-gray-700">수집항목:</strong> 이름, 나이, 연락처, 문의내용</li>
-                                    <li><strong class="text-gray-700">보유기간:</strong> 60일</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <button type="submit" class="w-full bg-[#e3004b] hover:bg-[#c20040] text-white font-bold text-lg py-4 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 mt-2">
-                            과정지원하기
-                        </button>
-                    </form>
-                </div>
-
+            <div class="flex items-center gap-2">
+                <a href="https://naver.me/xmBrY91h" target="_blank" rel="noopener noreferrer" class="card-interactive flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white font-bold text-xs shadow-md shadow-rose-600/30 transition-all border border-rose-400/30">
+                    <span>과정 지원하기</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
             </div>
         </div>
+    </header>
+
+    <!-- 메인 컨테이너 -->
+    <div class="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-16">
+
+        <!-- 1. 히어로 배너 (다크 테마 + 스크롤 리빌) -->
+        <section class="scroll-reveal relative rounded-3xl bg-gradient-to-b from-[#13192b] via-[#0f1524] to-[#0a0e1a] p-8 sm:p-12 md:p-16 border border-slate-800 shadow-2xl text-center overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:24px_24px] opacity-25"></div>
+            <div class="absolute top-0 left-1/4 right-1/4 h-[2px] bg-gradient-to-r from-transparent via-rose-500 to-transparent opacity-80"></div>
+
+            <div class="relative z-10 max-w-3xl mx-auto space-y-6">
+                <div class="inline-flex items-center gap-2 py-1 px-4 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-black tracking-widest uppercase shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+                    <span>K-Digital Training 정부 공인 국비지원</span>
+                </div>
+
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight tracking-tight break-keep">
+                    SM유니버스 생성형 AI코딩 기반<br />
+                    <span class="bg-gradient-to-r from-white via-slate-100 to-rose-300 bg-clip-text text-transparent">엔터테인먼트 플랫폼 엔지니어</span> 양성과정
+                </h1>
+
+                <p class="text-lg sm:text-xl font-extrabold text-rose-400 tracking-wide flex items-center justify-center gap-2">
+                    <span>With ChatGPT, GitHub Copilot &amp; Cursor (바이브 코딩)</span>
+                </p>
+
+                <p class="text-sm sm:text-base text-slate-300 font-medium leading-relaxed break-keep">
+                    SM엔터테인먼트 계열사 및 IT 최고 교육기관 KOSMO가 함께하는 비전공자/전공자 맞춤 실무 엔지니어 양성 트랙
+                </p>
+
+                <!-- 주요 지표 카드 그리드 (다크 카드 & 마우스 확대) -->
+                <div class="pt-2 grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
+                    <div class="card-interactive p-4 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm cursor-pointer">
+                        <span class="text-[11px] text-slate-400 block font-medium">정규 교육비용</span>
+                        <span class="text-base sm:text-lg font-black text-rose-400">18,876,000원</span>
+                    </div>
+                    <div class="card-interactive p-4 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm cursor-pointer">
+                        <span class="text-[11px] text-slate-400 block font-medium">실제자비부담금</span>
+                        <span class="text-base sm:text-lg font-black text-emerald-400">0원~60만원</span>
+                    </div>
+                    <div class="card-interactive p-4 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm cursor-pointer">
+                        <span class="text-[11px] text-slate-400 block font-medium">훈련 기간</span>
+                        <span class="text-base sm:text-lg font-black text-white">6개월 (1,040h)</span>
+                    </div>
+                    <div class="card-interactive p-4 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm cursor-pointer">
+                        <span class="text-[11px] text-slate-400 block font-medium">월 훈련장려금</span>
+                        <span class="text-base sm:text-lg font-black text-indigo-400">최대 80만원</span>
+                    </div>
+                </div>
+
+                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <a href="https://naver.me/xmBrY91h" target="_blank" rel="noopener noreferrer" class="card-interactive w-full sm:w-auto py-4 px-8 rounded-2xl bg-gradient-to-r from-rose-600 via-pink-600 to-rose-600 hover:from-rose-500 hover:to-pink-500 text-white font-black text-base shadow-lg shadow-rose-600/30 transition-all border border-rose-400/30">
+                        14회차 과정 지금 지원하기
+                    </a>
+                    <a href="#curriculum" class="card-interactive w-full sm:w-auto py-4 px-6 rounded-2xl bg-slate-900/90 hover:bg-slate-800 text-slate-200 font-bold text-sm border border-slate-700 shadow-sm transition-all">
+                        커리큘럼 세부보기
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 과정 기본 정보 그리드 (스크롤 리빌) -->
+        <section id="overview" class="scroll-reveal space-y-4">
+            <div class="card-interactive bg-slate-900/70 rounded-2xl p-6 sm:p-8 border border-slate-800 shadow-sm text-center">
+                <span class="text-xs font-bold text-rose-400 uppercase tracking-widest block mb-1">고용노동부 인증 정규 훈련과정</span>
+                <h2 class="text-xl sm:text-2xl font-black text-white">
+                    차세대 가상 엔터테인먼트 콘텐츠 엔지니어 양성과정
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-400 mt-2 font-medium">
+                    실제자비부담금: 0원~60만원 (국민내일배움카드 국비지원 혜택)
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="card-interactive bg-slate-900/60 rounded-2xl p-6 border border-slate-800 shadow-sm">
+                    <h3 class="text-base font-bold text-white mb-2">📅 교육기간 및 회차</h3>
+                    <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/90 flex justify-between items-center">
+                        <span class="text-white font-bold text-sm">2026-10-22 ~ 2027-04-28</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-rose-500/20 text-rose-300 font-bold border border-rose-500/30">14회차 모집</span>
+                    </div>
+                </div>
+
+                <div class="card-interactive bg-slate-900/60 rounded-2xl p-6 border border-slate-800 shadow-sm">
+                    <h3 class="text-base font-bold text-white mb-2">⏰ 교육시간</h3>
+                    <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/90">
+                        <p class="text-white font-bold text-sm">오전 09:30 ~ 오후 18:30 (월~금 주 5일)</p>
+                        <p class="text-xs text-slate-400 mt-1 font-medium">총 130일 (1,040시간) 실무 몰입 훈련</p>
+                    </div>
+                </div>
+
+                <div class="card-interactive bg-slate-900/60 rounded-2xl p-6 border border-slate-800 shadow-sm md:col-span-2">
+                    <h3 class="text-base font-bold text-white mb-3">📍 훈련장소</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/90">
+                            <span class="text-rose-400 font-bold block mb-1">SM유니버스 본사</span>
+                            <span class="text-slate-300 font-medium">서울특별시 강남구 영동대로 217</span>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/90">
+                            <span class="text-indigo-400 font-bold block mb-1">한국소프트웨어인재개발원 (KOSMO)</span>
+                            <span class="text-slate-300 font-medium">서울특별시 금천구 가산디지털단지</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 파트너십 안내 (스크롤 리빌) -->
+        <section class="scroll-reveal space-y-4">
+            <div class="text-center max-w-2xl mx-auto space-y-1">
+                <span class="text-xs font-bold text-rose-400 uppercase tracking-widest block">Official Partnership</span>
+                <h3 class="text-xl sm:text-2xl font-black text-white">엔터테인먼트와 테크놀로지의 결합</h3>
+                <p class="text-xs text-slate-400 font-medium">SM엔터테인먼트 계열사와 IT 우수 훈련기관이 합작 설계한 독점 커리큘럼</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="card-interactive p-6 rounded-2xl bg-slate-900/60 border border-slate-800 shadow-sm text-center">
+                    <span class="text-xs font-bold text-rose-400 block mb-1">SM Entertainment Group 자회사</span>
+                    <h4 class="text-lg font-black text-white mb-1">SM UNIVERSE</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed font-medium">K-컬처 콘텐츠와 미래 아티스트를 연결하는 글로벌 엔터테크 플랫폼 기획</p>
+                </div>
+                <div class="card-interactive p-6 rounded-2xl bg-slate-900/60 border border-slate-800 shadow-sm text-center">
+                    <span class="text-xs font-bold text-indigo-400 block mb-1">고용노동부 우수 훈련기관</span>
+                    <h4 class="text-lg font-black text-white mb-1">한국소프트웨어인재개발원</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed font-medium">20년 노하우의 풀스택 SW/AI 개발자 전문 양성 및 500여 협약 기업 취업 연계</p>
+                </div>
+                <div class="card-interactive p-6 rounded-2xl bg-slate-900/60 border border-slate-800 shadow-sm text-center">
+                    <span class="text-xs font-bold text-purple-400 block mb-1">메타버스 &amp; 버추얼 미디어</span>
+                    <h4 class="text-lg font-black text-white mb-1">STUDIO REALIVE</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed font-medium">차세대 가상 아이돌, 3D 실감형 인터랙티브 미디어 콘텐츠 제작 실무 자문</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 주요 특징 (스크롤 리빌) -->
+        <section id="features" class="scroll-reveal space-y-6">
+            <h2 class="text-2xl sm:text-3xl font-black text-white">주요 특징</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="card-interactive p-6 bg-slate-900/60 border border-slate-800 rounded-2xl shadow-sm">
+                    <h4 class="font-bold text-white text-base mb-1">SM 엔터 계열사 연계 프로젝트</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed font-medium">SM Universe 및 현업 아티스트 미디어 플랫폼과 연계된 실전 프로젝트 구축</p>
+                </div>
+                <div class="card-interactive p-6 bg-slate-900/60 border border-slate-800 rounded-2xl shadow-sm">
+                    <h4 class="font-bold text-white text-base mb-1">생성형 AI 페어 프로그래밍 실무</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed font-medium">ChatGPT, GitHub Copilot, Cursor를 활용한 생산성 극대화 훈련</p>
+                </div>
+                <div class="card-interactive p-6 bg-slate-900/60 border border-slate-800 rounded-2xl shadow-sm">
+                    <h4 class="font-bold text-white text-base mb-1">비전공자 맞춤 올인원 풀스택 트랙</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed font-medium">기초 문법부터 Spring, React, DB, 클라우드 배포까지 단계별 마스터</p>
+                </div>
+                <div class="card-interactive p-6 bg-slate-900/60 border border-slate-800 rounded-2xl shadow-sm">
+                    <h4 class="font-bold text-white text-base mb-1">1:1 취업 밀착 케어 시스템</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed font-medium">이력서·포트폴리오 무제한 첨삭, 500+ 협약 기업 채용 추천 및 사후 관리</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 제공해주신 커리큘럼 이미지 100% 반영한 정밀 커리큘럼 (스크롤 리빌) -->
+        <section id="curriculum" class="scroll-reveal space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                    <span class="text-xs font-bold text-rose-400 uppercase tracking-widest block">콘텐츠 엔지니어 양성과정 CURRICULUM</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-white">교육 커리큘럼 상세 안내</h2>
+                </div>
+                <button type="button" onclick="toggleAllCurriculums()" id="btn-toggle-all" class="card-interactive self-start sm:self-auto px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700 shadow-sm cursor-pointer">
+                    전체 세부항목 펼치기 / 접기
+                </button>
+            </div>
+
+            <div class="space-y-3">
+                <!-- 01. 정규 교과: LLM AI 어시스턴트 -->
+                <div class="card-interactive rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm overflow-hidden">
+                    <button type="button" onclick="toggleAccordion('cur-1')" class="w-full text-left p-5 flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-800/40">
+                        <div class="flex items-start sm:items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-rose-500/20 text-rose-400 font-bold text-xs flex items-center justify-center border border-rose-500/30 shrink-0">01</span>
+                            <div>
+                                <span class="text-[11px] px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-bold mr-2 border border-rose-500/30">정규 교과</span>
+                                <h4 class="text-base font-bold text-white inline-block">LLM을 활용한 AI 어시스턴트 프로그래밍 기초</h4>
+                                <p class="text-xs text-slate-400 mt-0.5">프롬프트 엔지니어링 기법 및 OpenAI API 연동 실무</p>
+                            </div>
+                        </div>
+                        <span id="icon-cur-1" class="rotate-icon text-slate-400 text-sm">▼</span>
+                    </button>
+                    <div id="cur-1" class="accordion-content bg-slate-950/70 border-t border-slate-800/80 open">
+                        <div class="p-5 space-y-3">
+                            <h5 class="text-xs font-bold text-rose-400">✦ 프롬프트 엔지니어링 및 LLM 프로그래밍</h5>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+                                <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 프롬프트 엔지니어링 기법</div>
+                                <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 프롬프트 최적화</div>
+                                <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 프롬프트 설계 및 테스트</div>
+                                <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 바이브코딩 (자연어 처리 및 생성 모델 소개)</div>
+                                <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ LLM 프로그래밍 기초</div>
+                                <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ OPEN AI API 사용하기</div>
+                                <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800 sm:col-span-2">✓ LLM 프로그램 작성하기</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 02. 정규 교과: 웹 시각화 개발자 (기초) -->
+                <div class="card-interactive rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm overflow-hidden">
+                    <button type="button" onclick="toggleAccordion('cur-2')" class="w-full text-left p-5 flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-800/40">
+                        <div class="flex items-start sm:items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-indigo-500/20 text-indigo-400 font-bold text-xs flex items-center justify-center border border-indigo-500/30 shrink-0">02</span>
+                            <div>
+                                <span class="text-[11px] px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-bold mr-2 border border-indigo-500/30">정규 교과</span>
+                                <h4 class="text-base font-bold text-white inline-block">버츄얼 엔터테인먼트 웹 시각화 개발자 (기초)</h4>
+                                <p class="text-xs text-slate-400 mt-0.5">SW기초기술(JAVA &amp; Python) 및 네트워크 프로그래밍</p>
+                            </div>
+                        </div>
+                        <span id="icon-cur-2" class="rotate-icon text-slate-400 text-sm">▼</span>
+                    </button>
+                    <div id="cur-2" class="accordion-content bg-slate-950/70 border-t border-slate-800/80 open">
+                        <div class="p-5 space-y-4">
+                            <div>
+                                <h5 class="text-xs font-bold text-indigo-400 mb-2">✦ SW기초기술이해 (JAVA)</h5>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ Java 프로그램에 대한 기본 구조 및 문법 (Java 개발환경 구축, 데이터타입, 연산자, 제어문)</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ Java 프로그램 구현을 위한 OOP (클래스 정의와 객체 생성, 상속, 다형성, 상클래스, 인터페이스)</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ GitHub Copilot 연동 환경 설정</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ Libaray 기능 이해 및 활용</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 응용 SW 개발을 위한 프로그램 설계 및 개발</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 응용 SW 개발을 위한 통합 기술</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800 sm:col-span-2">✓ Github Copilot을 활용한 Java 소스 코드 생성</div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h5 class="text-xs font-bold text-sky-400 mb-2">✦ SW기초기술이해 (Python)</h5>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ Python언어 기반의 객체지향 도입 (클래스, 생성자 등)</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 객체지향의 전개 (상속, 다형성, 다중상속 등)</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 객체지향의 완성 (연산자 오버로딩, 템플릿, 예외처리 등)</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ Github Copilot을 활용한 Python 소스 코드 생성</div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h5 class="text-xs font-bold text-emerald-400 mb-2">✦ Network Programming</h5>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 소켓 프로그래밍</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ TCP/IP 프로그래밍</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 센서 활용 및 제어 프로그래밍</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 인터넷 및 통신 제어</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 03. 정규 교과: 웹 시각화 개발자 (심화) -->
+                <div class="card-interactive rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm overflow-hidden">
+                    <button type="button" onclick="toggleAccordion('cur-3')" class="w-full text-left p-5 flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-800/40">
+                        <div class="flex items-start sm:items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-violet-500/20 text-violet-400 font-bold text-xs flex items-center justify-center border border-violet-500/30 shrink-0">03</span>
+                            <div>
+                                <span class="text-[11px] px-2 py-0.5 rounded bg-violet-500/20 text-violet-300 font-bold mr-2 border border-violet-500/30">정규 교과</span>
+                                <h4 class="text-base font-bold text-white inline-block">버츄얼 엔터테인먼트 웹 시각화 개발자 (심화)</h4>
+                                <p class="text-xs text-slate-400 mt-0.5">JSP/Spring, React, SQL &amp; [콘텐츠 특화] 가상 미디어 제작</p>
+                            </div>
+                        </div>
+                        <span id="icon-cur-3" class="rotate-icon text-slate-400 text-sm">▼</span>
+                    </button>
+                    <div id="cur-3" class="accordion-content bg-slate-950/70 border-t border-slate-800/80 open">
+                        <div class="p-5 space-y-4">
+                            <div>
+                                <h5 class="text-xs font-bold text-violet-400 mb-2">✦ Web 시각화 (JSP/ Spring)</h5>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ JSP 개요 소개 / 서블릿 및 필터 학습</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ DBMS 제어 (오라클 설치 및 구문학습) &amp; JDBC 주요기능</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ HTML 태그 및 데이터전송, 서버연계 학습 / 홈페이지 제작 실습</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ MVC 소개 및 환경구축 / 스프링 DI / 스프링 AOP</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 스프링 DBMS 연동 / 트랜잭션 관리와 ORM 연동</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 스프링 MVC / 스프링에서 View 영역구현 / 게시판 구현</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800 sm:col-span-2">✓ Github Copilot을 연동한 개발 환경 구성 및 코드 자동화</div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h5 class="text-xs font-bold text-amber-400 mb-2">✦ HTML5 / JavaScript / React &amp; 데이터베이스 SQL</h5>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ HTML5 / CSS3 / JavaScript (ECMA 5+) / React</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ Github Copilot을 연동한 개발 환경 구성 및 코드 자동화</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ DBMS를 설치하고 데이터베이스 생성, 오브젝트 계획, 설계 및 구현</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 데이터베이스에서 SQL을 사용하여 응용시스템 데이터 조작 및 제어</div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h5 class="text-xs font-bold text-rose-400 mb-2">✦ [콘텐츠 특화] 버츄얼 엔터테인먼트의 이해 &amp; 미디어 데이터 학습</h5>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 버츄얼 엔터테인먼트의 이해 (AI 시대 미디어 콘텐츠 리터러시 &amp; 전략)</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 미디어 콘텐츠 데이터 학습: 생성형 미디어 제작 기술 (Text -> Video, Voice)</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ AI Oriented IDE : Cursor, Gemini Code Assist 등 활용 환경 구축</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ Virtual Production &amp; AI Workflow : 영상·무대·실시간 콘텐츠와 개발 연계</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800 sm:col-span-2">✓ AI와 미디어 콘텐츠 활용 전략 (AIGC Web Deployment: 생성형 콘텐츠의 웹 실시간 배포)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 04. 프로젝트: 기초 프로젝트 -->
+                <div class="card-interactive rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm overflow-hidden">
+                    <button type="button" onclick="toggleAccordion('cur-4')" class="w-full text-left p-5 flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-800/40">
+                        <div class="flex items-start sm:items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-pink-500/20 text-pink-400 font-bold text-xs flex items-center justify-center border border-pink-500/30 shrink-0">04</span>
+                            <div>
+                                <span class="text-[11px] px-2 py-0.5 rounded bg-pink-500/20 text-pink-300 font-bold mr-2 border border-pink-500/30">프로젝트</span>
+                                <h4 class="text-base font-bold text-white inline-block">버츄얼 엔터테인먼트 웹 시각화 개발자 기초 프로젝트</h4>
+                                <p class="text-xs text-slate-400 mt-0.5">공공데이터 및 웹 시각화 기반 솔루션 기획·개발</p>
+                            </div>
+                        </div>
+                        <span id="icon-cur-4" class="rotate-icon text-slate-400 text-sm">▼</span>
+                    </button>
+                    <div id="cur-4" class="accordion-content bg-slate-950/70 border-t border-slate-800/80">
+                        <div class="p-5 space-y-2">
+                            <h5 class="text-xs font-bold text-pink-400">✦ 기초 프로젝트 수행 주제</h5>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+                                <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 font-semibold">📌 주제 1 : 공공데이터 진학 추천 서비스 프로젝트</div>
+                                <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 font-semibold">📌 주제 2 : 하우스 서치 프로젝트</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 05. 프로젝트: 심화 프로젝트 -->
+                <div class="card-interactive rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm overflow-hidden">
+                    <button type="button" onclick="toggleAccordion('cur-5')" class="w-full text-left p-5 flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-800/40">
+                        <div class="flex items-start sm:items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-rose-500/20 text-rose-400 font-bold text-xs flex items-center justify-center border border-rose-500/30 shrink-0">05</span>
+                            <div>
+                                <span class="text-[11px] px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-bold mr-2 border border-rose-500/30">프로젝트</span>
+                                <h4 class="text-base font-bold text-white inline-block">버츄얼 엔터테인먼트 웹 시각화 개발자 심화 프로젝트</h4>
+                                <p class="text-xs text-slate-400 mt-0.5">SM Universe 연계 가상 콘서트 &amp; 인터랙션 필름 플랫폼</p>
+                            </div>
+                        </div>
+                        <span id="icon-cur-5" class="rotate-icon text-slate-400 text-sm">▼</span>
+                    </button>
+                    <div id="cur-5" class="accordion-content bg-slate-950/70 border-t border-slate-800/80">
+                        <div class="p-5 space-y-2">
+                            <h5 class="text-xs font-bold text-rose-400">✦ 심화 프로젝트 수행 주제 (SM 엔터 연계)</h5>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-slate-300">
+                                <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 font-semibold">🎬 주제 1 : 가상 엔터테인먼트 콘서트 프로젝트</div>
+                                <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 font-semibold">🎬 주제 2 : 인터렉티브 시네마틱 필름 프로젝트</div>
+                                <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 font-semibold">🎬 주제 3 : 상호 인터렉션 퍼포먼스 챌린지 프로젝트</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 06. 재량 교과: 특강 & 경진대회 -->
+                <div class="card-interactive rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm overflow-hidden">
+                    <button type="button" onclick="toggleAccordion('cur-6')" class="w-full text-left p-5 flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-800/40">
+                        <div class="flex items-start sm:items-center gap-3">
+                            <span class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 font-bold text-xs flex items-center justify-center border border-emerald-500/30 shrink-0">06</span>
+                            <div>
+                                <span class="text-[11px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold mr-2 border border-emerald-500/30">재량 교과</span>
+                                <h4 class="text-base font-bold text-white inline-block">오리엔테이션, 산업체·취업 특강 &amp; 프로젝트 경진대회</h4>
+                                <p class="text-xs text-slate-400 mt-0.5">엔터 IT 현직자 멘토링, 1:1 취업 컨설팅 및 최종 데모데이</p>
+                            </div>
+                        </div>
+                        <span id="icon-cur-6" class="rotate-icon text-slate-400 text-sm">▼</span>
+                    </button>
+                    <div id="cur-6" class="accordion-content bg-slate-950/70 border-t border-slate-800/80">
+                        <div class="p-5 space-y-4">
+                            <div>
+                                <h5 class="text-xs font-bold text-emerald-400 mb-2">✦ 오리엔테이션 &amp; 재량 교과</h5>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-slate-300">
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 훈련 내용 및 운영 안내</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 강사 및 담당자 소개</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 학사 행정 및 기타 안내</div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h5 class="text-xs font-bold text-teal-400 mb-2">✦ 산업체 &amp; 취업 특강</h5>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 산업체 특강: 엔터산업에서의 IT 기술 활용 동향</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 취업 특강: 엔터산업 기업 채용 동향 분석</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 취업 특강: 이력서 포트폴리오 작성법 무제한 코칭</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 1:1 취업상담 및 추천 채용 매칭</div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h5 class="text-xs font-bold text-amber-400 mb-2">✦ 프로젝트 경진대회 및 수료식</h5>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 프로젝트 최종 발표 데모데이 (기업 실무진 심사)</div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900/70 border border-slate-800">✓ 우수 프로젝트 시상 및 수료식</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 6. 지원자격 (스크롤 리빌) -->
+        <section id="eligibility" class="scroll-reveal space-y-4">
+            <h2 class="text-2xl sm:text-3xl font-black text-white">지원자격</h2>
+            <div class="card-interactive bg-slate-900/70 rounded-2xl p-6 sm:p-8 border border-slate-800 shadow-sm space-y-3 text-sm text-slate-300 font-medium">
+                <p>✔ 국민내일배움카드 발급 가능자 및 기발급자 (거주지 고용센터 또는 고용24 온라인 신청 가능)</p>
+                <p>✔ 전공 무관 (인문·사회·예체능·이공계 등 비전공자 환영), K-Digital Training 수강 이력이 없는 자</p>
+                <p>✔ 교육 과정에 풀타임(09:30~18:30) 성실히 참여 가능한 자</p>
+                <p>✔ 생성형 AI, 버추얼 엔터테인먼트, K-콘텐츠 신기술 플랫폼에 열정이 있는 자</p>
+            </div>
+        </section>
+
+        <!-- 7. 취업지원 PLAN 로드맵 (스크롤 리빌) -->
+        <section id="employment" class="scroll-reveal space-y-4">
+            <h2 class="text-2xl sm:text-3xl font-black text-white">취업지원 5단계 로드맵</h2>
+            <div class="space-y-3">
+                <div class="card-interactive bg-slate-900/60 border border-slate-800 shadow-sm rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs sm:text-sm">
+                    <span class="font-bold text-white">STEP 1. 취업 교육생 등록 및 기초 진단</span>
+                    <span class="text-slate-400 font-medium">상담 관리 카드 작성, IT 적성 검사</span>
+                </div>
+                <div class="card-interactive bg-slate-900/60 border border-slate-800 shadow-sm rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs sm:text-sm">
+                    <span class="font-bold text-white">STEP 2. 1:1 진로 심층 상담</span>
+                    <span class="text-slate-400 font-medium">희망 직무 타겟팅 및 이력서 진단</span>
+                </div>
+                <div class="card-interactive bg-slate-900/60 border border-slate-800 shadow-sm rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs sm:text-sm">
+                    <span class="font-bold text-white">STEP 3. 자기소개서 &amp; 포트폴리오 무제한 첨삭</span>
+                    <span class="text-slate-400 font-medium">기업 시각의 프로젝트 스토리텔링 구축</span>
+                </div>
+                <div class="card-interactive bg-slate-900/60 border border-slate-800 shadow-sm rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs sm:text-sm">
+                    <span class="font-bold text-white">STEP 4. 실전 기술/인성 모의 면접</span>
+                    <span class="text-slate-400 font-medium">CS 지식, 라이브 코딩 및 임원 면접 대비</span>
+                </div>
+                <div class="card-interactive bg-slate-900/60 border border-slate-800 shadow-sm rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs sm:text-sm">
+                    <span class="font-bold text-white">STEP 5. 500+ 협약 기업 매칭 &amp; 사후 케어</span>
+                    <span class="text-slate-400 font-medium">수료 후 6개월간 우수 협약 기업 우선 추천</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. 롤링 배너 (스크롤 리빌) -->
+        <section class="scroll-reveal space-y-4 pt-4 border-t border-slate-800/80">
+            <h3 class="text-center text-xs font-bold text-slate-400 uppercase tracking-widest">
+                협력 및 수료생 주요 진출 기업
+            </h3>
+            <div class="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+                <div class="animate-marquee py-3 flex items-center gap-8 text-slate-400 font-bold text-sm">
+                    <span>현대제철</span><span>현대자동차</span><span>현대벤디스</span><span>KB국민은행</span>
+                    <span>NH농협은행</span><span>제일약품</span><span>LS오토모비스</span><span>IBK시스템</span>
+                    <span>LS네오텍</span><span>KX인텍</span><span>웰컴페이먼츠(주)</span><span>피플라이프</span>
+                    <span>현대제철</span><span>현대자동차</span><span>현대벤디스</span><span>KB국민은행</span>
+                    <span>NH농협은행</span><span>제일약품</span><span>LS오토모비스</span><span>IBK시스템</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. 마지막 하단 배너 (스크롤 리빌 & 마우스 인터랙션) -->
+        <section class="scroll-reveal card-interactive p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-rose-950/60 via-purple-950/40 to-slate-900/90 border border-rose-500/30 text-center space-y-6 shadow-2xl text-white">
+            <div class="max-w-2xl mx-auto space-y-3">
+                <span class="text-xs font-black text-rose-300 uppercase tracking-widest">
+                    지금이 바로 도전할 기회입니다
+                </span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight break-keep">
+                    SM유니버스와 함께 K-엔터테크 엔지니어로 도약하세요
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-300 font-medium">
+                    정규 교육비용 18,876,000원 국비지원 혜택 (조기 정원 마감 주의)
+                </p>
+            </div>
+
+            <div class="flex items-center justify-center">
+                <a href="https://naver.me/xmBrY91h" target="_blank" rel="noopener noreferrer" class="py-4 px-10 rounded-2xl bg-gradient-to-r from-rose-600 via-pink-600 to-rose-600 hover:from-rose-500 hover:to-pink-500 text-white font-black text-base shadow-xl shadow-rose-600/30 hover:scale-[1.03] active:scale-[0.98] transition-all border border-rose-400/30 cursor-pointer">
+                    온라인 간편 지원서 작성하기
+                </a>
+            </div>
+        </section>
+
     </div>
 
-    <!-- Page Footer -->
-    <footer class="w-full max-w-5xl mx-auto py-6 px-4 flex flex-col sm:flex-row justify-between items-center text-sm text-gray-500 font-medium pb-12">
-        <p>Copyright ⓒ 한국소프트웨어인재개발원 All rights reserved.</p>
-        <p class="mt-2 sm:mt-0 font-bold text-gray-700">☎️상담문의 : <a href="tel:010-4631-2547" class="hover:text-pink-600 transition-colors">010-4631-2547</a></p>
+    <!-- 푸터 -->
+    <footer class="w-full max-w-5xl mx-auto py-8 px-4 text-xs text-slate-400 font-medium pb-24 border-t border-slate-800/80">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p>Copyright ⓒ 한국소프트웨어인재개발원 &amp; SM UNIVERSE All rights reserved.</p>
+            <p>홈페이지 운영/담당자: 이승엽</p>
+        </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- 우측 하단 플로팅 버튼 -->
+    <a href="https://naver.me/xmBrY91h" target="_blank" rel="noopener noreferrer" class="card-interactive fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-gradient-to-r from-rose-600 via-pink-600 to-rose-600 hover:from-rose-500 hover:to-pink-500 text-white font-black text-sm shadow-2xl shadow-rose-600/40 active:scale-95 transition-all border border-rose-400/40">
+        <span class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
+        <span>과정 지원하기</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+    </a>
+
+    <!-- 아코디언 토글 & 스크롤 애니메이션 스크립트 -->
     <script>
-        // Form Submission Logic (Optimistic UI)
-        document.getElementById('inquiry-form').addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent standard page reload
+        // 1. 스크롤 올리고 내릴 때마다 부드럽게 나타나는 IntersectionObserver 애니메이션
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealElements = document.querySelectorAll('.scroll-reveal');
             
-            const form = e.target;
-            const successMessage = document.getElementById('form-success-message');
-            
-            // Generate form data payload
-            const formData = new FormData(form);
-            const data = new URLSearchParams(formData);
-
-            // 1. 낙관적 UI: 즉시 성공 메시지 표시 및 폼 숨김
-            form.style.display = 'none';
-            successMessage.classList.remove('hidden');
-
-            // 2. 백그라운드 전송 (keepalive 옵션으로 페이지 이탈 시에도 전송 보장)
-            fetch('https://inputhaven.com/api/v1/submit', {
-                method: 'POST',
-                body: data,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                keepalive: true
-            }).catch(error => {
-                console.error('Submission error:', error);
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    } else {
+                        entry.target.classList.remove('in-view');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -40px 0px'
             });
+
+            revealElements.forEach(el => observer.observe(el));
         });
 
-        AOS.init({
-            once: true,
-            offset: 50,
-            duration: 800,
-            easing: 'ease-out-cubic',
-        });
+        // 2. 아코디언 개별 토글
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            if (!content) return;
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                if (icon) icon.classList.remove('rotated');
+            } else {
+                content.classList.add('open');
+                if (icon) icon.classList.add('rotated');
+            }
+        }
+
+        // 3. 커리큘럼 전체 펼치기 / 접기
+        let allOpen = true;
+        function toggleAllCurriculums() {
+            allOpen = !allOpen;
+            const ids = ['cur-1', 'cur-2', 'cur-3', 'cur-4', 'cur-5', 'cur-6'];
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                const icon = document.getElementById('icon-' + id);
+                if (el) {
+                    if (allOpen) {
+                        el.classList.add('open');
+                        if (icon) icon.classList.add('rotated');
+                    } else {
+                        el.classList.remove('open');
+                        if (icon) icon.classList.remove('rotated');
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>
